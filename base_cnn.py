@@ -99,4 +99,23 @@ def main():
 	print("Network trained and saved as bird-classifier.tfl!")
 
 if __name__ == '__main__':
-	main()
+    # Parse arguments and create output directories.
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data_dir', type=str,
+                        default='data/tiny-imagenet-200',
+                        help='Directory in which the input data is stored.')
+    parser.add_argument('--hdf5',
+                        help='Set if hdf5 database should be created.',
+                        action='store_true')
+    parser.add_argument('--name', type=str,
+                        default='default',
+                        help='Name of this training run. Will store results in output/[name]')
+    args, unparsed = parser.parse_known_args()
+    if not os.path.exists('tensorboard'):
+        os.makedirs('tensorboard')
+    if not os.path.exists('output'):
+        os.makedirs('output')
+    main(args.data_dir, args.hdf5, args.name)
+
+# if __name__ == '__main__':
+# 	main()
