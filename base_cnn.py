@@ -58,7 +58,7 @@ def get_data(data_dir, hdf5):
 	X, Y = shuffle(X, Y)
 	return X, Y, X_test, Y_test
 
-def main():
+def main(data_dir, hdf5, name):
 	batch_size = 256
 	num_epochs = 10
 	learning_rate = 0.001
