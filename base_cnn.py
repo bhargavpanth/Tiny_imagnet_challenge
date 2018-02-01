@@ -31,6 +31,7 @@ from tflearn.data_utils import shuffle
 
 def get_data(data_dir, hdf5):
 	train_file, val_file = build_dataset_index(data_dir)
+
 	if hdf5:
 		if not os.path.exists('hdf5'):
 			os.makedirs('hdf5')
@@ -48,15 +49,14 @@ def get_data(data_dir, hdf5):
 		h5f = h5py.File('hdf5/tiny-imagenet_val.h5', 'r')
 		X_test = h5f['X']
 		Y_test = h5f['Y']
+	else:
+		from tflearn.data_utils import image_preloader
+		X, Y = image_preloader(train_file, image_shape=(64, 64), mode='file', categorical_labels=True, normalize=True, filter_channel=True)
+		X_test, Y_test = image_preloader(val_file, image_shape=(64, 64), mode='file', categorical_labels=True, normalize=True, filter_channel=True)
 
-    else:
-    	from tflearn.data_utils import image_preloader
-    	X, Y = image_preloader(train_file, image_shape=(64, 64), mode='file', categorical_labels=True, normalize=True, filter_channel=True)
-    	X_test, Y_test = image_preloader(val_file, image_shape=(64, 64), mode='file', categorical_labels=True, normalize=True, filter_channel=True)
-
-    # Randomly shuffle the dataset.
-    X, Y = shuffle(X, Y)
-    return X, Y, X_test, Y_test
+	# Randomly shuffle the dataset.
+	X, Y = shuffle(X, Y)
+	return X, Y, X_test, Y_test
 
 def main():
 	batch_size = 256
