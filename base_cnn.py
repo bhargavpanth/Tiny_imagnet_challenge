@@ -97,3 +97,6 @@ def main():
 	# Save model when training is complete to a file
 	model.save("bird-classifier.tfl")
 	print("Network trained and saved as bird-classifier.tfl!")
+
+if __name__ == '__main__':
+	main()
