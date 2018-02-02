@@ -40,9 +40,9 @@ def create_network(img_prep, img_aug, learning_rate):
     # Tell tflearn how we want to train the network
     network = regression(network, optimizer='adam',loss='categorical_crossentropy',learning_rate=0.001)
     # Wrap the network in a model object
-    model = tflearn.DNN(network, tensorboard_verbose=0, checkpoint_path='bird-classifier.tfl.ckpt')
+    model = tflearn.DNN(network, tensorboard_verbose=0, checkpoint_path='baseline_cnn.tfl.ckpt')
     # Train it! We'll do 100 training passes and monitor it as it goes.
-    model.fit(X, Y, n_epoch=100, shuffle=True, validation_set=(X_test, Y_test),show_metric=True, batch_size=96,snapshot_epoch=True,run_id='bird-classifier')
+    model.fit(X, Y, n_epoch=100, shuffle=True, validation_set=(X_test, Y_test),show_metric=True, batch_size=96,snapshot_epoch=True,run_id='baseline_cnn')
     # save the model results
     model.save("baseline_cnn.tfl")
     print("Network trained and saved as baseline_cnn.tfl")
