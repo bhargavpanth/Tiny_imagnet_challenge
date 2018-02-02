@@ -18,59 +18,32 @@ def create_network(img_prep, img_aug, learning_rate):
     Returns:
         The network."""
 
-
-
-    ##
-    #network = input_data(shape=[None, 32, 32, 3], data_preprocessing=img_prep, data_augmentation=img_aug)
-    # Step 1: Convolution
-    #network = conv_2d(network, 32, 3, activation='relu')
-    # Step 2: Max pooling
-    #network = max_pool_2d(network, 2)
-    # Step 3: Convolution
-    #network = conv_2d(network, 64, 3, activation='relu')
-    # Step 4: Convolution
-    #network = conv_2d(network, 64, 3, activation='relu')
-    # Step 5: Max pooling
-    #network = max_pool_2d(network, 2)
-    # Step 6: Fully-connected 512 node neural network
-    #network = fully_connected(network, 512, activation='relu')
-    # Step 7: Dropout - throw away some data randomly during training to prevent over-fitting
-    #network = dropout(network, 0.5)
-    # Step 8: Fully-connected neural network with two outputs (0=isn't a bird, 1=is a bird) to make the final prediction
-    #network = fully_connected(network, 2, activation='softmax')
-    # Tell tflearn how we want to train the network
-    # network = regression(network, optimizer='adam',loss='categorical_crossentropy',learning_rate=0.001)
-    #network = regression(network, optimizer='adam', learning_rate=0.01, loss='mean_square', name='target')
-    # Wrap the network in a model object
-    # model = tflearn.DNN(network, tensorboard_verbose=0, checkpoint_path='baseline_cnn.tfl.ckpt')
-    # Train it! We'll do 100 training passes and monitor it as it goes.
-    # model.fit(X, Y, n_epoch=100, shuffle=True, validation_set=(X_test, Y_test),show_metric=True, batch_size=96,snapshot_epoch=True,run_id='baseline_cnn')
-    # save the model results
-    # model.save("baseline_cnn.tfl")
-    # print("Network trained and saved as baseline_cnn.tfl")
-
-
     # ## Input shape will be [batch_size, height, width, channels].
-    network = input_data(shape=[None, 64, 64, 3],
-                          data_preprocessing=img_prep,
-                          data_augmentation=img_aug)
+    #network = input_data(shape=[None, 64, 64, 3],
+     #                     data_preprocessing=img_prep,
+      #                    data_augmentation=img_aug)
     ## First convolution layer. 32 filters of size 5. Activation function ReLU. 64x64x3 -> 64x64x32
-    network = conv_2d(network, 32, 5, activation='relu')
+    #network = conv_2d(network, 32, 5, activation='relu')
     ## First batch normalization layer
+    
+    network = input_data(shape=[None, 32, 32, 3], data_preprocessing=img_prep, data_augmentation=img_aug)
+    # Step 1: Convolution
+    network = conv_2d(network, 32, 3, activation='relu')
+    # Step 2: Max pooling
     network = max_pool_2d(network, 2)
-    
+    # Step 3: Convolution
     network = conv_2d(network, 64, 3, activation='relu')
-    
+    # Step 4: Convolution
     network = conv_2d(network, 64, 3, activation='relu')
-    
+    # Step 5: Max pooling
     network = max_pool_2d(network, 2)
-    
+    # Step 6: Fully-connected 512 node neural network
     network = fully_connected(network, 512, activation='relu')
-    
+    # Step 7: Dropout - throw away some data randomly during training to prevent over-fitting
     network = dropout(network, 0.5)
-    
+    # Step 8: Fully-connected neural network with two outputs (0=isn't a bird, 1=is a bird) to make the final prediction
     network = fully_connected(network, 2, activation='softmax')
-    
+    # Tell tflearn how we want to train the network
     network = regression(network, optimizer='adam',loss='categorical_crossentropy',learning_rate=0.001)
     
     
@@ -90,9 +63,7 @@ def create_network(img_prep, img_aug, learning_rate):
     ## Second fully connected layer. 1x1024 -> 1x200. Maps to class labels. Softmax activation to get probabilities.
     #network = fully_connected(network, 200, activation='softmax')
     ## Loss function. Softmax cross entropy. Adam optimization.
-    #network = regression(network, optimizer='adam',
-     #                     loss='categorical_crossentropy',
-      #                    learning_rate=learning_rate)
+    #network = regression(network, optimizer='adam', loss='categorical_crossentropy', learning_rate=learning_rate)
     #model.save("baseline.tfl")
     #print("Network trained and saved as baseline.tfl")
 

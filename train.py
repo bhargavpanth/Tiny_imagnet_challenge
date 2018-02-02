@@ -99,9 +99,8 @@ def main(data_dir, hdf5, name):
     model = tflearn.DNN(network, tensorboard_verbose=0, checkpoint_path='baseline_cnn.tfl.ckpt')
     # model = tflearn.DNN(network, tensorboard_verbose=0, tensorboard_dir='tensorboard', best_checkpoint_path=checkpoint_path)
     
-    model.fit(X, Y, n_epoch=100, shuffle=True, validation_set=(X_test, Y_test),show_metric=True, batch_size=96,snapshot_epoch=True,run_id='baseline_cnn')
-    # model.fit(X, Y, n_epoch=num_epochs, shuffle=True, validation_set=(X_test, Y_test),
-    # show_metric=True, batch_size=batch_size, run_id=name)
+    #model.fit(X, Y, n_epoch=num_epochs, shuffle=True, validation_set=(X_test, Y_test),show_metric=True, batch_size=96,snapshot_epoch=True,run_id='baseline_cnn')
+    model.fit(X, Y, n_epoch=num_epochs, shuffle=True, validation_set=(X_test, Y_test), show_metric=True, batch_size=batch_size, snapshot_epoch=True, run_id=name)
 
 if __name__ == '__main__':
     # Parse arguments and create output directories.
