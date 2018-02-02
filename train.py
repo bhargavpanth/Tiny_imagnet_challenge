@@ -118,4 +118,3 @@ if __name__ == '__main__':
     if not os.path.exists('output'):
         os.makedirs('output')
     main(args.data_dir, args.hdf5, args.name)
-    
