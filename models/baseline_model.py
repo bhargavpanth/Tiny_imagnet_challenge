@@ -45,7 +45,7 @@ def create_network(img_prep, img_aug, learning_rate):
                          learning_rate=learning_rate)
     return network
     
-    #network = input_data(shape=[None, 32, 32, 3], data_preprocessing=img_prep, data_augmentation=img_aug)
+    #network = input_data(shape=[None, 64, 64, 3], data_preprocessing=img_prep, data_augmentation=img_aug)
     # Step 1: Convolution
     #network = conv_2d(network, 32, 3, activation='relu')
     # Step 2: Max pooling
