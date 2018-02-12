@@ -66,3 +66,5 @@ def create_network(img_prep, img_aug, learning_rate):
     #network = regression(network, optimizer='adam',loss='categorical_crossentropy',learning_rate=0.001)
     
   
+    # VGG Net
+    
