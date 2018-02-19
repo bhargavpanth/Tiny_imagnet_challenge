@@ -26,7 +26,8 @@ def create_network(img_prep, img_aug, learning_rate):
     # First batch normalization layer
     norm1 = batch_normalization(pool1, stddev=0.002, trainable=True, restore=True, reuse=False)
     # dropout layer
-    norm1 = tf.nn.dropout(norm1, 1)
+    #norm1 = tf.nn.dropout(norm1, 1)
+    norm1 = dropout(norm1, 1)
 
 
     # Second convolution layer. 32 filters of size 5. Activation function ReLU. 64x64x3 -> 64x64x32
@@ -36,7 +37,8 @@ def create_network(img_prep, img_aug, learning_rate):
     # First batch normalization layer
     norm2 = batch_normalization(pool2, stddev=0.002, trainable=True, restore=True, reuse=False)
     # dropout layer
-    norm2 = tf.nn.dropout(norm2, 1)
+    #norm2 = tf.nn.dropout(norm2, 1)
+    norm2 = dropout(norm2, 1)
 
 
     # Second convolution layer. 32 filters of size 5. Activation function ReLU. 64x64x3 -> 64x64x32
@@ -46,7 +48,8 @@ def create_network(img_prep, img_aug, learning_rate):
     # First batch normalization layer
     norm3 = batch_normalization(pool3, stddev=0.002, trainable=True, restore=True, reuse=False)
     # dropout layer
-    norm3 = tf.nn.dropout(norm3, 1)
+    #norm3 = tf.nn.dropout(norm3, 1)
+    norm3 = dropout(norm3, 1)
 
     
     return network
